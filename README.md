@@ -1,8 +1,5 @@
 # web_server
-
-[![Package Version](https://img.shields.io/hexpm/v/web_server)](https://hex.pm/packages/web_server)
-[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/web_server/)
-
+Simple integration of HTMX withGleam
 ```sh
 gleam add web_server
 ```

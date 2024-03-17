@@ -1,23 +1,25 @@
-import nakai
 import nakai/html
 import nakai/html/attrs
+import nakai
 
-const header_style = "
- color: #331f26;
- font-family: 'Neuton', serif;
- font-size: 128px;
- font-weight: 400;
-"
-
-pub fn header(attrs: List(attrs.Attr(a)), text: String) -> html.Node(a) {
-  let attrs = [attrs.style(header_style), ..attrs]
-  html.h1_text(attrs, text)
-}
-
-pub fn page() -> String {
-  html.div([], [
-    html.Head([html.title("Hello!")]),
-    header([], "Hello, from Glen!"),
+pub fn page(head: List(html.Node(a))) -> String {
+  html.Head(head)
+  html.Body([], [
+    html.Element(
+      "script",
+      [
+        attrs.src("https://unpkg.com/htmx.org@1.9.11"),
+        attrs.integrity(
+          "sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0",
+        ),
+        attrs.Attr("crossorigin", "anonymous"),
+      ],
+      [],
+    ),
+    html.button(
+      [attrs.Attr("hx-post", "/click"), attrs.Attr("hx-trigger", "click")],
+      [html.Text("Click Me!")],
+    ),
   ])
   |> nakai.to_string()
 }
